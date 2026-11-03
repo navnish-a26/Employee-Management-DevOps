@@ -33,19 +33,19 @@ pipeline {
         }
 
         stage('Package') {
-            steps {
-                bat '''
-                    jar --create --file dist\\employee-management.jar --main-class Main -C build .
-                '''
-            }
-        }
+    steps {
+        bat '''
+            "C:\\Program Files\\Java\\jdk-21\\bin\\jar.exe" --create --file dist\\employee-management.jar --main-class Main -C build .
+        '''
+    }
+}
 
         stage('Deploy') {
             steps {
                 bat '''
                     if not exist deployment mkdir deployment
                     copy /Y dist\\employee-management.jar deployment\\employee-management.jar
-                    java -jar deployment\\employee-management.jar --healthcheck
+                    "C:\\Program Files\\Java\\jdk-21\\bin\\java.exe" -jar deployment\\employee-management.jar --healthcheck
                 '''
             }
         }
